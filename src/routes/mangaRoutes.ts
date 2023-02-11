@@ -7,10 +7,10 @@ router.get('/', mangaController.getAll)
 
 router.get('/:id', mangaController.getOne)
 
-router.post('/email-activate', mangaController.addOne)
+router.post('/', mangaController.add)
 
-router.put('/:id', mangaController.editOne)
+router.put('/:id', mangaController.edit)
 
-router.put('/:id', mangaController.deleteOne)
+router.put('/delete/:id', mangaController.delete)
 
 export default router

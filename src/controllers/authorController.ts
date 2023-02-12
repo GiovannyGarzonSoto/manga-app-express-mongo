@@ -1,16 +1,16 @@
 import { Request, Response } from 'express'
-import Manga, {IManga} from '../models/Manga'
+import Author, {IAuthor} from '../models/Author'
 
-class MangaController {
+class AuthorController {
     public async getAll(req: Request, res: Response): Promise<Response> {
         try{
-            const data = await Manga.find()
+            const data = await Author.find()
             .sort('name')
             .exec()
             if(!data){
                 return res.status(500).json({
                     success: false,
-                    message: 'Ha ocurrido un problema al listar los Mangas '
+                    message: 'Ha ocurrido un problema al listar los Autores '
                 })
             }
             res.json({
@@ -20,7 +20,7 @@ class MangaController {
         }catch(err){
             return res.status(500).json({
                 success: false,
-                message: 'No se han podido listar los Mangas',
+                message: 'No se han podido listar los Autores',
                 err
             })
         }
@@ -29,12 +29,12 @@ class MangaController {
     public async getOne(req: Request, res: Response): Promise<Response> {
         try{
             const {id} = req.params
-            const data = await Manga.findById(id)
+            const data = await Author.findById(id)
             .exec()
             if(!data){
                 return res.status(500).json({
                     success: false,
-                    message: 'El Manga no existe'
+                    message: 'El Autor no existe'
                 })
             }
             res.json({
@@ -44,7 +44,7 @@ class MangaController {
         }catch(err){
             return res.status(500).json({
                 success: false,
-                message: 'No se ha podido listar el Manga',
+                message: 'No se ha podido listar el Autor',
                 err
             })
         }
@@ -52,24 +52,19 @@ class MangaController {
 
     public async add(req: Request, res: Response): Promise<Response> {
         try{
-            const {title, author, cover, background, description, available } = req.body
-            const newManga: IManga = new Manga({
-                title,
-                author,
-                cover,
-                background,
-                description,
-                available
+            const {name} = req.body
+            const newAuthor: IAuthor = new Author({
+                name
             })
-            await newManga.save()
+            await newAuthor.save()
             res.json({
                 success: true,
-                data: newManga
+                data: newAuthor
             })
         }catch(err){
             return res.status(400).json({
                 success: false,
-                message: 'No se ha podido agregar el Manga',
+                message: 'No se ha podido agregar el Autor',
                 err
             })
         }
@@ -79,21 +74,21 @@ class MangaController {
         try{
             const {id} = req.params
             const {body} = req
-            const updatedMove: IManga = await Manga.findByIdAndUpdate(id, body, {new: true})
-            if(!updatedMove){
+            const updatedAuthor: IAuthor = await Author.findByIdAndUpdate(id, body, {new: true})
+            if(!updatedAuthor){
                 return res.status(400).json({
                     success: false,
-                    message: 'El Movimiento no existe'
+                    message: 'El Autor no existe'
                 })
             }
             res.json({
                 success: true,
-                data: updatedMove
+                data: updatedAuthor
             })
         }catch(err){
             return res.status(400).json({
                 success: false,
-                message: 'No se ha podido actualizar el Movimiento',
+                message: 'No se ha podido actualizar el Autor',
                 err
             })
         }
@@ -102,25 +97,25 @@ class MangaController {
     public async delete(req: Request, res: Response): Promise<Response> {
         try{
             const {id} = req.params
-            const removedManga: IManga = await Manga.findByIdAndRemove(id)
-            if(!removedManga){
+            const removedAuthor: IAuthor = await Author.findByIdAndRemove(id)
+            if(!removedAuthor){
                 return res.status(400).json({
                     success: false,
-                    message: 'El Manga no existe'
+                    message: 'El Autor no existe'
                 })
             }
             res.json({
                 success: true,
-                data: removedManga
+                data: removedAuthor
             })
         }catch(err){
             return res.status(400).json({
                 success: false,
-                message: 'No se ha podido eliminar el Manga',
+                message: 'No se ha podido eliminar el Autor',
                 err
             })
         }
     }
 }
 
-export const mangaController = new MangaController()
+export const authorController = new AuthorController()

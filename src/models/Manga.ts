@@ -3,7 +3,7 @@ import uniqueValidator from 'mongoose-unique-validator'
 
 export interface IManga extends Document{
     title: string
-    autor: Schema.Types.ObjectId
+    author: Schema.Types.ObjectId
     cover: string
     background: string
     description: string
@@ -17,7 +17,7 @@ const mangaSchema = new Schema({
         unique: true,
         max: 40
     },
-    autor: {
+    author: {
         type: Schema.Types.ObjectId,
         required: [true, 'El Autor es obligatorio'],
     },

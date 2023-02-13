@@ -13,4 +13,6 @@ router.put('/:id', pagesController.edit)
 
 router.put('/delete/:id', pagesController.delete)
 
+router.get('/chapter/:id/', pagesController.getPagesByChapter)
+
 export default router

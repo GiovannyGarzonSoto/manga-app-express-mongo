@@ -1,4 +1,5 @@
 import { Request, Response } from 'express'
+import Chapter from '../models/Chapter'
 import Page, {IPage} from '../models/Page'
 
 class PagesController {
@@ -115,6 +116,32 @@ class PagesController {
                 success: false,
                 message: 'No se ha podido eliminar la Pagina',
                 err
+            })
+        }
+    }
+
+    public async getPagesByChapter(req: Request, res: Response): Promise<Response> {
+        try{
+            const {id} = req.params
+            const chapter = await Chapter.findById(id)
+            const pages = await Page.find()
+            const array = []
+            for (let i = 0; i < pages.length; i++) {
+                if(chapter._id, pages[i].chapter) {
+                  array.push(pages[i].image)
+                }
+            }
+            return res.json({
+                success: true,
+                data: {
+                    chapter,
+                    pages: array
+                }
+            })
+        }catch(err) {
+            return res.json({
+                success: false,
+                message: 'No se han podido listar las Paginas por Capitulo'
             })
         }
     }

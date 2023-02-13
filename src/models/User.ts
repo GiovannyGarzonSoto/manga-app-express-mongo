@@ -20,18 +20,15 @@ const userSchema = new Schema({
         type: String,
         required: [true, 'El nombre del Usuario es obligatorio'],
         unique: true,
-        max: 40
     },
     email: {
         type: String,
         unique: true,
         required: [true, 'El email del Usuario es obligatorio'],
-        max: 30
     },
     password: {
         type: String,
         required: [true, 'La contraseña de Usuario es obligatoria'],
-        max: 40
     },
     google: {
         type: Boolean,

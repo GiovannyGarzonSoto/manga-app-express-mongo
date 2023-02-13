@@ -23,7 +23,7 @@ const chapterSchema = new Schema({
         max: 100
     },
     premiere: {
-        type: [Date, Boolean],
+        type: Date,
         default: false
     },
     available: {

@@ -5,7 +5,7 @@ class MangaController {
     public async getAll(req: Request, res: Response): Promise<Response> {
         try{
             const data = await Manga.find()
-            .sort('name')
+            .sort('title')
             .exec()
             if(!data){
                 return res.status(500).json({

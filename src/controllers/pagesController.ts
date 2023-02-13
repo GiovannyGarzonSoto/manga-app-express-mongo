@@ -20,7 +20,7 @@ class PagesController {
         }catch(err){
             return res.status(500).json({
                 success: false,
-                message: 'No se han podido listar los Autores',
+                message: 'No se han podido listar las Paginas',
                 err
             })
         }
@@ -54,7 +54,9 @@ class PagesController {
         try{
             const {chapter, number,image} = req.body
             const newPage: IPage = new Page({
-                name
+                chapter,
+                number,
+                image
             })
             await newPage.save()
             res.json({
@@ -74,11 +76,11 @@ class PagesController {
         try{
             const {id} = req.params
             const {body} = req
-            const updatedPage: IPage = await PerformanceEventTiming.findByIdAndUpdate(id, body, {new: true})
+            const updatedPage: IPage = await Page.findByIdAndUpdate(id, body, {new: true})
             if(!updatedPage){
                 return res.status(400).json({
                     success: false,
-                    message: 'El Autor no existe'
+                    message: 'La Pagina no existe'
                 })
             }
             res.json({
@@ -88,7 +90,7 @@ class PagesController {
         }catch(err){
             return res.status(400).json({
                 success: false,
-                message: 'No se ha podido actualizar el Autor',
+                message: 'No se ha podido actualizar la Pagina',
                 err
             })
         }
@@ -97,21 +99,21 @@ class PagesController {
     public async delete(req: Request, res: Response): Promise<Response> {
         try{
             const {id} = req.params
-            const removedAuthor: IPage = await Author.findByIdAndRemove(id)
-            if(!removedAuthor){
+            const removedPage: IPage = await Page.findByIdAndRemove(id)
+            if(!removedPage){
                 return res.status(400).json({
                     success: false,
-                    message: 'El Autor no existe'
+                    message: 'La Pagina no existe'
                 })
             }
             res.json({
                 success: true,
-                data: removedAuthor
+                data: removedPage
             })
         }catch(err){
             return res.status(400).json({
                 success: false,
-                message: 'No se ha podido eliminar el Autor',
+                message: 'No se ha podido eliminar la Pagina',
                 err
             })
         }

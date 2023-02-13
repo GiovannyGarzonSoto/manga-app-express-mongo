@@ -10,7 +10,6 @@ const authorSchema = new Schema({
         type: String,
         required: [true, 'El nombre del Autor es obligatorio'],
         unique: true,
-        max: 40
     },
 }, {
     timestamps: true,

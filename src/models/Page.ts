@@ -10,7 +10,6 @@ const pageSchema = new Schema({
     number: {
         type: Number,
         required: [true, 'El numero del Capitulo es obligatorio'],
-        max: 4
     },
     chapter: {
         type: Schema.Types.ObjectId,

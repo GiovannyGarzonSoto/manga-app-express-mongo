@@ -1,16 +1,16 @@
 import {Router} from 'express'
-import {mangaController} from '../controllers/mangaController'
+import {chapterController} from '../controllers/chapterController'
 
 const router: Router = Router()
 
-router.get('/', mangaController.getAll)
+router.get('/', chapterController.getAll)
 
-router.get('/:id', mangaController.getOne)
+router.get('/:id', chapterController.getOne)
 
-router.post('/', mangaController.add)
+router.post('/', chapterController.add)
 
-router.put('/:id', mangaController.edit)
+router.put('/:id', chapterController.edit)
 
-router.put('/delete/:id', mangaController.delete)
+router.put('/delete/:id', chapterController.delete)
 
 export default router

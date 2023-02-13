@@ -15,7 +15,6 @@ const mangaSchema = new Schema({
         type: String,
         required: [true, 'El nombre del Manga es obligatorio'],
         unique: true,
-        max: 40
     },
     author: {
         type: Schema.Types.ObjectId,

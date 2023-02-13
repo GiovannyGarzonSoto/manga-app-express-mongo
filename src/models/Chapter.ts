@@ -29,7 +29,7 @@ const chapterSchema = new Schema({
     available: {
         type: Boolean,
         default: false
-    }
+    },
 }, {
     timestamps: true,
     versionKey: false

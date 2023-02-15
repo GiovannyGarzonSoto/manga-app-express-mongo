@@ -127,7 +127,7 @@ class PagesController {
             const pages = await Page.find()
             const array = []
             for (let i = 0; i < pages.length; i++) {
-                if(chapter._id, pages[i].chapter) {
+                if(chapter.id, pages[i].chapter) {
                   array.push(pages[i].image)
                 }
             }

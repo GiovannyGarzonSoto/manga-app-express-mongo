@@ -4,6 +4,7 @@ export interface IPage extends Document{
     number: number
     chapter: Schema.Types.ObjectId
     image: string
+    publicId: string
 }
 
 const pageSchema = new Schema({
@@ -18,6 +19,10 @@ const pageSchema = new Schema({
     image: {
         type: String,
         required: [true, 'La Pagina del Capitulo es obligatoria'],
+    },
+    publicId: {
+        type: String,
+        required: [true, 'El ID publico de la Pagina es obligatorio']
     }
 }, {
     timestamps: true,

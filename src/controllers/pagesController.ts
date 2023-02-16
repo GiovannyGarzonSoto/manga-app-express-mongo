@@ -1,6 +1,8 @@
 import { Request, Response } from 'express'
 import Chapter from '../models/Chapter'
 import Page, {IPage} from '../models/Page'
+import cloudinary from 'cloudinary'
+import fs from 'fs-extra'
 
 class PagesController {
     public async getAll(req: Request, res: Response): Promise<Response> {
@@ -53,11 +55,14 @@ class PagesController {
 
     public async add(req: Request, res: Response): Promise<Response> {
         try{
-            const {chapter, number,image} = req.body
+            const {chapter, number} = req.body
+            console.log(req, 'req')
+            // const result = await cloudinary.v2.uploader.upload(req.file.path)
             const newPage: IPage = new Page({
                 chapter,
                 number,
-                image
+                // image: result.secure_url,
+                // publicId: result.public_id
             })
             await newPage.save()
             res.json({

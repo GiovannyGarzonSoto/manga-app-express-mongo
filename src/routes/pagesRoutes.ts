@@ -1,5 +1,6 @@
 import {Router} from 'express'
 import {pagesController} from '../controllers/pagesController'
+import upload from '../middlewares/multer'
 
 const router: Router = Router()
 
@@ -7,7 +8,7 @@ router.get('/', pagesController.getAll)
 
 router.get('/:id', pagesController.getOne)
 
-router.post('/', pagesController.add)
+router.post('/', upload.single('image'), pagesController.add)
 
 router.put('/:id', pagesController.edit)
 

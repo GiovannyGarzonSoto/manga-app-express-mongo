@@ -12,7 +12,6 @@ const chapterSchema = new Schema({
     number: {
         type: Number,
         required: [true, 'El numero del Capitulo es obligatorio'],
-        max: 4
     },
     manga: {
         type: Schema.Types.ObjectId,
@@ -20,7 +19,6 @@ const chapterSchema = new Schema({
     },
     title: {
         type: String,
-        max: 100
     },
     premiere: {
         type: Date,

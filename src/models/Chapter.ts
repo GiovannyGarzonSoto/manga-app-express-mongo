@@ -31,6 +31,6 @@ const chapterSchema = new Schema({
 }, {
     timestamps: true,
     versionKey: false
-})
+}) 
 
 export default model<IChapter>('Chapter', chapterSchema)

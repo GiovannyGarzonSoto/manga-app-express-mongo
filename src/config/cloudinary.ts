@@ -8,3 +8,4 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_SECRET,
     secure: true 
 })
+

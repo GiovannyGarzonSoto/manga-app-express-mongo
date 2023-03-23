@@ -9,8 +9,6 @@ router.get('/:id', posterController.getOne)
 
 router.post('/', posterController.add)
 
-router.put('/:id', posterController.edit)
-
 router.put('/delete/:id', posterController.delete)
 
 export default router

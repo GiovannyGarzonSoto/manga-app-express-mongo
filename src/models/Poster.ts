@@ -8,10 +8,11 @@ export interface IPoster extends Document{
 const posterSchema = new Schema({
     image: {
         type: String,
-        unique: true,
+        unique: true
     },
     publicId: {
-        type: Schema.Types.ObjectId
+        type: String,
+        unique: true
     }
 }, {
     timestamps: true,

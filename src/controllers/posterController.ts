@@ -1,5 +1,9 @@
 import { Request, Response } from 'express'
 import Poster, {IPoster} from '../models/Poster'
+import fs from 'fs-extra'
+
+const cloudinary = require('cloudinary').v2;
+require('../config/cloudinary')
 
 class PosterController {
     public async getAll(req: Request, res: Response): Promise<Response> {
@@ -52,11 +56,13 @@ class PosterController {
 
     public async add(req: Request, res: Response): Promise<Response> {
         try{
-            const {name} = req.body
+            const result = await cloudinary.uploader.upload(req.files[0].path)
             const newPoster: IPoster = new Poster({
-                name
+                image: result.secure_url,
+                publicId: result.public_id
             })
             await newPoster.save()
+            await fs.unlink(req.files[0].path)
             res.json({
                 success: true,
                 data: newPoster
@@ -65,30 +71,6 @@ class PosterController {
             return res.status(400).json({
                 success: false,
                 message: 'No se ha podido agregar el Cartel',
-                err
-            })
-        }
-    }
-
-    public async edit(req: Request, res: Response): Promise<Response> {
-        try{
-            const {id} = req.params
-            const {body} = req
-            const updatedPoster: IPoster = await Poster.findByIdAndUpdate(id, body, {new: true})
-            if(!updatedPoster){
-                return res.status(400).json({
-                    success: false,
-                    message: 'El Cartel no existe'
-                })
-            }
-            res.json({
-                success: true,
-                data: updatedPoster
-            })
-        }catch(err){
-            return res.status(400).json({
-                success: false,
-                message: 'No se ha podido actualizar el Cartel',
                 err
             })
         }

@@ -21,7 +21,7 @@ const mangaSchema = new Schema({
         type: Schema.Types.ObjectId,
         required: [true, 'El Autor es obligatorio'],
     },
-    images: [{
+    images: {
         cover: {
             type: String,
             required: true,
@@ -37,7 +37,7 @@ const mangaSchema = new Schema({
             type: String,
             required: true,
         }
-    }],
+    },
     description: {
         type: String,
         required: [true, 'La descripcion del Manga es obligatoria'],

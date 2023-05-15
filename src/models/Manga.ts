@@ -20,6 +20,7 @@ const mangaSchema = new Schema({
     author: {
         type: Schema.Types.ObjectId,
         required: [true, 'El Autor es obligatorio'],
+        ref: 'Author'
     },
     images: {
         cover: {

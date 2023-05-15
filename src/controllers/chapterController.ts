@@ -5,8 +5,9 @@ class ChapterController {
     public async getAll(req: Request, res: Response): Promise<Response> {
         try{
             const data = await Chapter.find()
-            .populate('manga')
             .sort('number')
+            .populate('manga')
+            .populate('author')
             .exec()
             if(!data){
                 return res.status(500).json({

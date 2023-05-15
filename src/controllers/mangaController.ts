@@ -10,6 +10,7 @@ class MangaController {
         try{
             const data = await Manga.find()
             .sort('title')
+            .populate('author')
             .exec()
             if(!data){
                 return res.status(500).json({

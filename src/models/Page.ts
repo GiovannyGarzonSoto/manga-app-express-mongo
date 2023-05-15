@@ -15,6 +15,7 @@ const pageSchema = new Schema({
     chapter: {
         type: Schema.Types.ObjectId,
         required: [true, 'El Capitulo del Manga es obligatorio'],
+        ref: 'Chapter'
     },
     image: {
         type: String,

@@ -1,5 +1,8 @@
 import { Request, Response } from 'express'
 import Chapter, {IChapter} from '../models/Chapter'
+import Author from '../models/Author'
+import { isObjectIdOrHexString } from 'mongoose'
+import Manga from '../models/Manga'
 
 class ChapterController {
     public async getAll(req: Request, res: Response): Promise<Response> {
@@ -9,7 +12,7 @@ class ChapterController {
             .populate('manga')
             .populate('author')
             .exec()
-            if(!data){
+            if(!data){   
                 return res.status(500).json({
                     success: false,
                     message: 'Ha ocurrido un problema al listar los Capitulos'
@@ -54,14 +57,14 @@ class ChapterController {
 
     public async add(req: Request, res: Response): Promise<Response> {
         try{
-            const {number, manga, title, premiere, available, autor} = req.body
+            const {number, manga, title, premiere, available, author} = req.body
             const newChapter: IChapter = new Chapter({
                 number,
                 manga,
                 title,
                 premiere,
                 available,
-                autor
+                author
             })
             await newChapter.save()
             res.json({

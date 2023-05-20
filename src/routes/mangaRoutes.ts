@@ -5,6 +5,8 @@ const router: Router = Router()
 
 router.get('/', mangaController.getAll)
 
+router.get('/views', mangaController.getMangasByViews)
+
 router.get('/:id', mangaController.getOne)
 
 router.post('/', mangaController.add)

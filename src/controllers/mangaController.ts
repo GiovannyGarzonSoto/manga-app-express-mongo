@@ -31,6 +31,32 @@ class MangaController {
         }
     }
 
+    public async getMangasByViews(req: Request, res: Response): Promise<Response> {
+        try{
+            const data = await Manga.find()
+            .sort({views: 'desc'})
+            .populate('author')
+            .limit(3)
+            .exec()
+            if(!data){
+                return res.status(500).json({
+                    success: false,
+                    message: 'Ha ocurrido un problema al listar los Mangas por vistas'
+                })
+            }
+            res.json({
+                success: true,
+                data: data
+            })
+        }catch(err){
+            return res.status(500).json({
+                success: false,
+                message: 'No se han podido listar los Mangas por vistas',
+                err
+            })
+        }
+    }
+
     public async getOne(req: Request, res: Response): Promise<Response> {
         try{
             const {id} = req.params

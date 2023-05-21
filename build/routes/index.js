@@ -1,0 +1,20 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var usersRoutes_1 = __importDefault(require("./usersRoutes"));
+var mangaRoutes_1 = __importDefault(require("./mangaRoutes"));
+var chapterRoutes_1 = __importDefault(require("./chapterRoutes"));
+var authorRoutes_1 = __importDefault(require("./authorRoutes"));
+var pagesRoutes_1 = __importDefault(require("./pagesRoutes"));
+var posterRoutes_1 = __importDefault(require("./posterRoutes"));
+var express_1 = require("express");
+var router = (0, express_1.Router)();
+router.use('/auth', usersRoutes_1.default);
+router.use('/manga', mangaRoutes_1.default);
+router.use('/chapter', chapterRoutes_1.default);
+router.use('/author', authorRoutes_1.default);
+router.use('/pages', pagesRoutes_1.default);
+router.use('/poster', posterRoutes_1.default);
+exports.default = router;

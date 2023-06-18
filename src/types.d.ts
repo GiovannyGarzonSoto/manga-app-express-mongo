@@ -1,7 +1,13 @@
 import { Request, Response } from 'express'
 
-declare namespace Express {
-    export interface Request {
-        user: string | object
+declare module 'express' {
+    interface Request {
+        user?: any; 
     }
 }
+
+// declare namespace Express {
+//     export interface Request {
+//         user: string | object
+//     }
+// }

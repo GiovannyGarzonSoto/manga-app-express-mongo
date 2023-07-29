@@ -31,6 +31,18 @@ class ChapterController {
         }
     }
 
+    public async getChaptersByManga(req: Request, res: Response): Promise<Response> {
+        try{
+            
+        }catch(err) {
+            return res.status(500).json({
+                success: false,
+                message: 'No se han podido listar los Capitulos segun Manga',
+                err
+            })
+        }
+    }
+
     public async getOne(req: Request, res: Response): Promise<Response> {
         try{
             const {id} = req.params

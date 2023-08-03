@@ -32,16 +32,22 @@ class ChapterController {
 
     public async getChaptersByManga(req: Request, res: Response): Promise<Response> {
         try{
-            const data = await Chapter.find({
-                $where: () => {
-                    let chapterId = this.id
-                    
-                }
+            const data = await Chapter.find({manga: req.params.mangaId})
+            console.log(data, 'data')
+            if(!data){   
+                return res.status(500).json({
+                    success: false,
+                    message: 'Ha ocurrido un problema al listar los Capitulos por Manga'
+                })
+            }
+            res.json({
+                success: true,
+                data
             })
         }catch(err) {
             return res.status(500).json({
                 success: false,
-                message: 'No se han podido listar los Capitulos segun Manga',
+                message: 'No se han podido listar los Capitulos por Manga',
                 err
             })
         }

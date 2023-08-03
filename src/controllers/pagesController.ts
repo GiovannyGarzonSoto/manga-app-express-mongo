@@ -57,10 +57,9 @@ class PagesController {
 
     public async add(req: Request, res: Response): Promise<Response> {
         try{
-            const {chapter, number} = req.body
+            const {chapter} = req.body
             const result = await cloudinary.uploader.upload(req.files[0].path)            
             const newPage: IPage = new Page({
-                number,
                 chapter,
                 image: result.secure_url,
                 publicId: result.public_id
@@ -137,18 +136,12 @@ class PagesController {
         try{
             const {id} = req.params
             const chapter = await Chapter.findById(id)
-            const pages = await Page.find()
-            const array = []
-            for (let i = 0; i < pages.length; i++) {
-                if(chapter.id.toString() === pages[i].chapter.toString()) {
-                  array.push(pages[i].image)
-                }
-            }
+            const pages = await Page.find({chapter})
             return res.json({
                 success: true,
                 data: {
                     chapter,
-                    pages: array
+                    pages
                 }
             })
         }catch(err) {

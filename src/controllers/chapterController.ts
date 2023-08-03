@@ -1,7 +1,6 @@
 import { Request, Response } from 'express'
 import Chapter, {IChapter} from '../models/Chapter'
 import Author from '../models/Author'
-import { isObjectIdOrHexString } from 'mongoose'
 import Manga from '../models/Manga'
 
 class ChapterController {
@@ -33,7 +32,12 @@ class ChapterController {
 
     public async getChaptersByManga(req: Request, res: Response): Promise<Response> {
         try{
-            
+            const data = await Chapter.find({
+                $where: () => {
+                    let chapterId = this.id
+                    
+                }
+            })
         }catch(err) {
             return res.status(500).json({
                 success: false,

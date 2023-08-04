@@ -33,7 +33,6 @@ class ChapterController {
     public async getChaptersByManga(req: Request, res: Response): Promise<Response> {
         try{
             const data = await Chapter.find({manga: req.params.mangaId})
-            console.log(data, 'data')
             if(!data){   
                 return res.status(500).json({
                     success: false,

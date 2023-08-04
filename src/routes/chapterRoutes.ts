@@ -7,7 +7,7 @@ router.get('/', chapterController.getAll)
 
 router.get('/:id', chapterController.getOne)
 
-router.get('/manga/:manga', chapterController.getChaptersByManga)
+router.get('/manga/:mangaId', chapterController.getChaptersByManga)
 
 router.post('/', chapterController.add)
 

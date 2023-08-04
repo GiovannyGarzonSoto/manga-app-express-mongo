@@ -8,7 +8,7 @@ router.get('/', pagesController.getAll)
 
 router.get('/:id', pagesController.getOne)
 
-router.get('/chapter/:chapter',  pagesController.getPagesByChapter)
+router.get('/chapter/:chapterId',  pagesController.getPagesByChapter)
 
 router.post('/', pagesController.add)
 

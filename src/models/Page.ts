@@ -1,6 +1,7 @@
 import { model, Document, Schema } from 'mongoose'
 
-export interface IPage extends Document{
+export interface IPage extends Document {
+    number: number
     chapter: Schema.Types.ObjectId
     image: string
     publicId: string
@@ -12,9 +13,14 @@ const pageSchema = new Schema({
         required: [true, 'El Capitulo del Manga es obligatorio'],
         ref: 'Chapter'
     },
+    number: {
+        type: Number,
+        required: [true, 'El Numero de la Pagina es obligatorio'],
+        ref: 'Chapter'
+    },
     image: {
         type: String,
-        required: [true, 'La Pagina del Capitulo es obligatoria'],
+        required: [true, 'La Imagen de la Pagina es obligatoria'],
     },
     publicId: {
         type: String,

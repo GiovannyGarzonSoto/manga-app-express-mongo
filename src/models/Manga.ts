@@ -8,7 +8,8 @@ export interface IManga extends Document{
     background: string
     description: string
     available: boolean
-    views: number
+    views?: number
+    state?: string
 }
 
 const mangaSchema = new Schema({
@@ -50,6 +51,10 @@ const mangaSchema = new Schema({
     views: {
         type: Number,
         default: 0
+    },
+    state: {
+        type: String,
+        default: 'emission'
     }
 }, {
     timestamps: true,

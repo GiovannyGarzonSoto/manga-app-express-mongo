@@ -83,7 +83,7 @@ class MangaController {
 
     public async add(req: Request, res: Response): Promise<Response> {
         try{
-            const {title, author, description, available } = req.body
+            const {title, author, description, available, state } = req.body
             const resultCover = await cloudinary.uploader.upload(req.files[0].path)  
             const resultBackground = await cloudinary.uploader.upload(req.files[1].path)  
             const newManga: IManga = new Manga({
@@ -96,7 +96,8 @@ class MangaController {
                     backgroundId: resultBackground.public_id
                 },
                 description,
-                available
+                available,
+                state
             })
             await newManga.save()
             await fs.unlink(req.files[0].path)
@@ -129,8 +130,8 @@ class MangaController {
                     backgroundId: resultBackground.public_id
                 },
             }
-            const updatedMove: IManga = await Manga.findByIdAndUpdate(id, edited, {new: true})
-            if(!updatedMove){
+            const updatedManga: IManga = await Manga.findByIdAndUpdate(id, edited, {new: true})
+            if(!updatedManga){
                 return res.status(400).json({
                     success: false,
                     message: 'El Manga no existe'
@@ -138,7 +139,7 @@ class MangaController {
             }
             res.json({
                 success: true,
-                data: updatedMove
+                data: updatedManga
             })
         }catch(err){
             return res.status(400).json({

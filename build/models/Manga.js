@@ -44,6 +44,10 @@ var mangaSchema = new mongoose_1.Schema({
     views: {
         type: Number,
         default: 0
+    },
+    state: {
+        type: String,
+        default: 'emission'
     }
 }, {
     timestamps: true,

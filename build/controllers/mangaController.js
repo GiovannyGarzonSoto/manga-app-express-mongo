@@ -168,12 +168,12 @@ var MangaController = /** @class */ (function () {
     };
     MangaController.prototype.add = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, title, author, description, available, resultCover, resultBackground, newManga, err_4;
+            var _a, title, author, description, available, state, resultCover, resultBackground, newManga, err_4;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
                         _b.trys.push([0, 6, , 7]);
-                        _a = req.body, title = _a.title, author = _a.author, description = _a.description, available = _a.available;
+                        _a = req.body, title = _a.title, author = _a.author, description = _a.description, available = _a.available, state = _a.state;
                         return [4 /*yield*/, cloudinary.uploader.upload(req.files[0].path)];
                     case 1:
                         resultCover = _b.sent();
@@ -190,7 +190,8 @@ var MangaController = /** @class */ (function () {
                                 backgroundId: resultBackground.public_id
                             },
                             description: description,
-                            available: available
+                            available: available,
+                            state: state
                         });
                         return [4 /*yield*/, newManga.save()];
                     case 3:
@@ -220,7 +221,7 @@ var MangaController = /** @class */ (function () {
     };
     MangaController.prototype.edit = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, body, resultCover, resultBackground, edited, updatedMove, err_5;
+            var id, body, resultCover, resultBackground, edited, updatedManga, err_5;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -241,8 +242,8 @@ var MangaController = /** @class */ (function () {
                             } });
                         return [4 /*yield*/, Manga_1.default.findByIdAndUpdate(id, edited, { new: true })];
                     case 3:
-                        updatedMove = _a.sent();
-                        if (!updatedMove) {
+                        updatedManga = _a.sent();
+                        if (!updatedManga) {
                             return [2 /*return*/, res.status(400).json({
                                     success: false,
                                     message: 'El Manga no existe'
@@ -250,7 +251,7 @@ var MangaController = /** @class */ (function () {
                         }
                         res.json({
                             success: true,
-                            data: updatedMove
+                            data: updatedManga
                         });
                         return [3 /*break*/, 5];
                     case 4:

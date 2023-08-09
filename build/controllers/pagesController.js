@@ -141,8 +141,8 @@ var PagesController = /** @class */ (function () {
                     case 1:
                         result = _b.sent();
                         newPage = new Page_1.default({
-                            number: number,
                             chapter: chapter,
+                            number: number,
                             image: result.secure_url,
                             publicId: result.public_id
                         });
@@ -244,29 +244,23 @@ var PagesController = /** @class */ (function () {
     };
     PagesController.prototype.getPagesByChapter = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, chapter, pages, array, i, err_6;
+            var chapterId, chapter, pages, err_6;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        id = req.params.id;
-                        return [4 /*yield*/, Chapter_1.default.findById(id)];
+                        chapterId = req.params.chapterId;
+                        return [4 /*yield*/, Chapter_1.default.findById(chapterId)];
                     case 1:
                         chapter = _a.sent();
-                        return [4 /*yield*/, Page_1.default.find()];
+                        return [4 /*yield*/, Page_1.default.find({ chapter: chapterId })];
                     case 2:
                         pages = _a.sent();
-                        array = [];
-                        for (i = 0; i < pages.length; i++) {
-                            if (chapter.id.toString() === pages[i].chapter.toString()) {
-                                array.push(pages[i].image);
-                            }
-                        }
                         return [2 /*return*/, res.json({
                                 success: true,
                                 data: {
                                     chapter: chapter,
-                                    pages: array
+                                    pages: pages
                                 }
                             })];
                     case 3:

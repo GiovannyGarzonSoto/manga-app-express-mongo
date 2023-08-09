@@ -6,6 +6,7 @@ var pagesController_1 = require("../controllers/pagesController");
 var router = (0, express_1.Router)();
 router.get('/', pagesController_1.pagesController.getAll);
 router.get('/:id', pagesController_1.pagesController.getOne);
+router.get('/chapter/:chapterId', pagesController_1.pagesController.getPagesByChapter);
 router.post('/', pagesController_1.pagesController.add);
 router.put('/:id', pagesController_1.pagesController.edit);
 router.put('/delete/:id', pagesController_1.pagesController.delete);

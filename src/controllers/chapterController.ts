@@ -1,7 +1,5 @@
 import { Request, Response } from 'express'
 import Chapter, {IChapter} from '../models/Chapter'
-import Author from '../models/Author'
-import Manga from '../models/Manga'
 
 class ChapterController {
     public async getAll(req: Request, res: Response): Promise<Response> {

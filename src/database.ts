@@ -1,5 +1,6 @@
-import {connect} from 'mongoose' 
+import mongoose, {connect} from 'mongoose' 
 
+mongoose.set('strictQuery', false)
 export const connectDatabase = async() => {
     try{
         await connect(`mongodb+srv://${process.env.ATLAS_URI}/manga-app?retryWrites=true&w=majority`)

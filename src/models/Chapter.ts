@@ -5,7 +5,7 @@ export interface IChapter extends Document{
     manga: Schema.Types.ObjectId
     author: Schema.Types.ObjectId
     title: string
-    premiere: boolean | Date
+    premiere?:  Date
     available: boolean
 }
 
@@ -29,7 +29,7 @@ const chapterSchema = new Schema({
     },
     premiere: {
         type: Date,
-        default: false
+        default: new Date()
     },
     available: {
         type: Boolean,

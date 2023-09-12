@@ -84,7 +84,7 @@ class MangaController {
     public async add(req: Request, res: Response): Promise<Response> {
         try{
             const {title, author, description, available, state } = req.body
-            const resultCover = await cloudinary.uploader.upload(req.files[0].path)  
+            const resultCover = await cloudinary.uploader.upload(req.files[0].path)
             const resultBackground = await cloudinary.uploader.upload(req.files[1].path)  
             const newManga: IManga = new Manga({
                 title,

@@ -10,6 +10,7 @@ class PagesController {
     public async getAll(req: Request, res: Response): Promise<Response> {
         try{
             const data = await Page.find()
+            .populate('chapter')
             .sort('number')
             .exec()
             if(!data){

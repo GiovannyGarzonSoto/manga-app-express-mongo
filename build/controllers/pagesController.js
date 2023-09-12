@@ -67,6 +67,7 @@ var PagesController = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, Page_1.default.find()
+                                .populate('chapter')
                                 .sort('number')
                                 .exec()];
                     case 1:

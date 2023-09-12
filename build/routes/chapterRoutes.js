@@ -6,6 +6,7 @@ var router = (0, express_1.Router)();
 router.get('/', chapterController_1.chapterController.getAll);
 router.get('/:id', chapterController_1.chapterController.getOne);
 router.get('/manga/:mangaId', chapterController_1.chapterController.getChaptersByManga);
+router.get('/by-premiere/', chapterController_1.chapterController.getChaptersByPremiere);
 router.post('/', chapterController_1.chapterController.add);
 router.put('/:id', chapterController_1.chapterController.edit);
 router.put('/delete/:id', chapterController_1.chapterController.delete);

@@ -114,9 +114,48 @@ var ChapterController = /** @class */ (function () {
             });
         });
     };
+    ChapterController.prototype.getChaptersByPremiere = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var data, err_3;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, Chapter_1.default.find()
+                            // .sort('-premiere')
+                            // .exec()
+                        ];
+                    case 1:
+                        data = _a.sent();
+                        // .sort('-premiere')
+                        // .exec()
+                        console.log('data', data);
+                        if (!data) {
+                            return [2 /*return*/, res.status(500).json({
+                                    success: false,
+                                    message: 'Ha ocurrido un problema al listar los Capitulos por Estreno'
+                                })];
+                        }
+                        res.json({
+                            success: true,
+                            data: data
+                        });
+                        return [3 /*break*/, 3];
+                    case 2:
+                        err_3 = _a.sent();
+                        return [2 /*return*/, res.status(500).json({
+                                success: false,
+                                message: 'No se han podido listar los Capitulos por Estreno',
+                                err: err_3
+                            })];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
     ChapterController.prototype.getOne = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, data, err_3;
+            var id, data, err_4;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -138,11 +177,11 @@ var ChapterController = /** @class */ (function () {
                         });
                         return [3 /*break*/, 3];
                     case 2:
-                        err_3 = _a.sent();
+                        err_4 = _a.sent();
                         return [2 /*return*/, res.status(500).json({
                                 success: false,
                                 message: 'No se ha podido listar el Capitulo',
-                                err: err_3
+                                err: err_4
                             })];
                     case 3: return [2 /*return*/];
                 }
@@ -151,7 +190,7 @@ var ChapterController = /** @class */ (function () {
     };
     ChapterController.prototype.add = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, number, manga, title, premiere, available, author, newChapter, err_4;
+            var _a, number, manga, title, premiere, available, author, newChapter, err_5;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -174,11 +213,11 @@ var ChapterController = /** @class */ (function () {
                         });
                         return [3 /*break*/, 3];
                     case 2:
-                        err_4 = _b.sent();
+                        err_5 = _b.sent();
                         return [2 /*return*/, res.status(400).json({
                                 success: false,
                                 message: 'No se ha podido agregar el Capitulo',
-                                err: err_4
+                                err: err_5
                             })];
                     case 3: return [2 /*return*/];
                 }
@@ -187,7 +226,7 @@ var ChapterController = /** @class */ (function () {
     };
     ChapterController.prototype.edit = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, body, updatedChapter, err_5;
+            var id, body, updatedChapter, err_6;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -209,11 +248,11 @@ var ChapterController = /** @class */ (function () {
                         });
                         return [3 /*break*/, 3];
                     case 2:
-                        err_5 = _a.sent();
+                        err_6 = _a.sent();
                         return [2 /*return*/, res.status(400).json({
                                 success: false,
                                 message: 'No se ha podido actualizar el Capitulo',
-                                err: err_5
+                                err: err_6
                             })];
                     case 3: return [2 /*return*/];
                 }
@@ -222,7 +261,7 @@ var ChapterController = /** @class */ (function () {
     };
     ChapterController.prototype.delete = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, removeChapter, err_6;
+            var id, removeChapter, err_7;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -243,11 +282,11 @@ var ChapterController = /** @class */ (function () {
                         });
                         return [3 /*break*/, 3];
                     case 2:
-                        err_6 = _a.sent();
+                        err_7 = _a.sent();
                         return [2 /*return*/, res.status(400).json({
                                 success: false,
                                 message: 'No se ha podido eliminar el Capitulo',
-                                err: err_6
+                                err: err_7
                             })];
                     case 3: return [2 /*return*/];
                 }
